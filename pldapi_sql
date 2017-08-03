@@ -1,0 +1,36 @@
+
+
+CREATE DATABASE pldapi  
+CHARACTER SET 'utf8'  
+COLLATE 'utf8_general_ci';  
+
+create user pldapi identified by 'pldapi';
+grant all privileges on pldapi.* to pldapi@localhost identified by 'pldapi';
+
+use pldapi;
+
+    CREATE TABLE IF NOT EXISTS `device_info` (
+        `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        `name` varchar(255) NOT NULL DEFAULT '' ,
+        `ip` varchar(255) NOT NULL DEFAULT '' ,
+        `dtype` varchar(255) NOT NULL DEFAULT '' ,
+        `status` varchar(255) NOT NULL DEFAULT '' ,
+        `duser` integer NOT NULL DEFAULT 0 
+    ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
+
+    CREATE TABLE IF NOT EXISTS `account_info` (
+        `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        `name` varchar(255) NOT NULL DEFAULT '' ,
+	`device_id` integer NOT NULL DEFAULT 0,
+        `ip` varchar(255) NOT NULL DEFAULT '' ,
+	`status` varchar(255) NOT NULL DEFAULT '' ,
+        `priv` varchar(255) NOT NULL DEFAULT '' ,
+        `sync` varchar(255) NOT NULL DEFAULT '' ,
+        `mapping` varchar(255) NOT NULL DEFAULT '' 
+    ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
+
+    CREATE TABLE IF NOT EXISTS `group_info` (
+	`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        `group_id` integer NOT NULL DEFAULT 0,
+        `device_id` integer NOT NULL DEFAULT 0 
+    ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
